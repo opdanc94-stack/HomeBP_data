@@ -684,11 +684,21 @@ function renderEntry(d) {
 
   let html = `<div class="entry-head">วันที่ ${d} จาก ${DAYS} วัน</div>
   <div style="margin-bottom:12px;">
-    <label style="display:block;font-size:12px;color:var(--muted);margin-bottom:5px;font-weight:500;">📅 วันที่บันทึก (เลือกได้เลยค่ะ)</label>
-    <input type="date" id="date_${d}" value="${saved.date || ''}"
+    <label style="display:block;font-size:12px;color:var(--muted);margin-bottom:5px;font-weight:500;">📅 วันที่บันทึก (วัน/เดือน/ปี เช่น 19/04/2569)</label>
+    <input type="text" id="date_${d}" value="${saved.date || ''}"
+      placeholder="เช่น 19/04/2569"
+      inputmode="numeric"
+      maxlength="10"
       style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;
              font-family:'Sarabun',sans-serif;font-size:15px;color:var(--text);outline:none;background:white;"
-      onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border)'">
+      onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--border)'"
+      oninput="
+        let v=this.value.replace(/[^0-9]/g,'');
+        if(v.length>2) v=v.slice(0,2)+'/'+v.slice(2);
+        if(v.length>5) v=v.slice(0,5)+'/'+v.slice(5);
+        if(v.length>10) v=v.slice(0,10);
+        this.value=v;
+      ">
   </div>`;
 
   slots.forEach(sl => {
