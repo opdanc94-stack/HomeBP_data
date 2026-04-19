@@ -893,6 +893,10 @@ function calcAll() {
     aS:avg(allSBP), aD:avg(allDBP), aN:allSBP.length,
     maxS: allSBP.length ? Math.max(...allSBP) : null,
     minS: allSBP.length ? Math.min(...allSBP) : null,
+    maxMornSBP: mSBP.length ? Math.max(...mSBP) : null,
+    maxMornDBP: mDBP.length ? Math.max(...mDBP) : null,
+    maxEvenSBP: eSBP.length ? Math.max(...eSBP) : null,
+    maxEvenDBP: eDBP.length ? Math.max(...eDBP) : null,
   };
 }
 
@@ -1026,6 +1030,10 @@ function sendToSheet() {
     morning_dbp: r.mD || '',
     evening_sbp: r.eS || '',
     evening_dbp: r.eD || '',
+    max_morning_sbp: r.maxMornSBP || '',
+    max_morning_dbp: r.maxMornDBP || '',
+    max_evening_sbp: r.maxEvenSBP || '',
+    max_evening_dbp: r.maxEvenDBP || '',
     days:    Object.keys(data.days).length,
     text:    buildShareText()
   };
