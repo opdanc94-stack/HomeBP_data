@@ -1003,7 +1003,7 @@ function buildShareText() {
 
 // ─── SHARE / COPY ───
 // ─── SEND TO GOOGLE SHEET ───
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyKgP7Y71m4fpy1kbbpY7uFjxlRjMV8UoPwGMehqjRj9m8-JFwkCXmT2l4YZUCwfgo3Kg/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwqa3iUsjyT-FSUJFDjsJi5O_F4ToxqltQdRqHmjijUf5-esXqNeGDR-6FLi2VQGU7B0g/exec';
 
 function sendToSheet() {
   const r = calcAll();
@@ -1012,6 +1012,10 @@ function sendToSheet() {
     hn:      data.patient.hn   || '-',
     avg_sbp: r.aS || '',
     avg_dbp: r.aD || '',
+    morning_sbp: r.mS || '',
+    morning_dbp: r.mD || '',
+    evening_sbp: r.eS || '',
+    evening_dbp: r.eD || '',
     days:    Object.keys(data.days).length,
     text:    buildShareText()
   };
